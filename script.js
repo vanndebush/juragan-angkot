@@ -1,8 +1,8 @@
-var passengers = [];
-var balance = 0;
+const passengers = [];
+let balance = 0;
 
 function addPassenger(name) {
-  var maxSeat = 7;
+  const maxSeat = 7;
   if (name === '') {
     return 'Invalid input!';
   } else if (passengers.length >= maxSeat && !passengers.includes(undefined)) {
@@ -11,7 +11,7 @@ function addPassenger(name) {
     passengers.push(name);
     return 'Successfully added!';
   } else {
-    for (var i = 0; i < passengers.length; i++) {
+    for (let i = 0; i < passengers.length; i++) {
       if (passengers[i] === undefined) {
         passengers[i] = name;
         return 'Successfully added!';
@@ -31,7 +31,7 @@ function removePassenger(name, price) {
   } else if (passengers.length === 0) {
     return 'Angkot is empty!';
   } else {
-    for (var i = 0; i < passengers.length; i++) {
+    for (let i = 0; i < passengers.length; i++) {
       if (passengers[i] === name) {
         balance += price;
         passengers[i] = undefined;
@@ -44,17 +44,17 @@ function removePassenger(name, price) {
 }
 
 function showPassengers() {
-  var string = '';
-  for (var i = 0; i < passengers.length; i++) {
+  let string = '';
+  for (let i = 0; i < passengers.length; i++) {
     string += 'Seat-' + (i + 1) + ': ' + (passengers[i] === undefined ? 'Empty' : passengers[i]) + '\n';
   }
   return string;
 }
 
-var repeat = true;
+let repeat = true;
 
 while (repeat) {
-  var mainInput = parseInt(prompt(
+  const mainInput = parseInt(prompt(
     '"Juragan Angkot"\n\n' +
     '[1] Add a passenger\n' +
     '[2] Remove a passenger\n' +
@@ -69,19 +69,19 @@ while (repeat) {
   } else {
     switch (mainInput) {
       case 1:
-        var passengerName = prompt('Type the passenger\'s name!');
-        alert(addPassenger(passengerName));
+        const passengerNameToAdd = prompt('Type the passenger\'s name!');
+        alert(addPassenger(passengerNameToAdd));
         break;
       case 2:
-        var passengerName = prompt(
+        const passengerNameToRemove = prompt(
           showPassengers() + '\n' +
           'Type the passengers\'s name!'
         );
-        var price = parseInt(prompt('Input the price!'));
-        alert(removePassenger(passengerName, price));
+        const price = parseInt(prompt('Input the price!'));
+        alert(removePassenger(passengerNameToRemove, price));
         break;
       case 3:
-        alert(showPassengers());
+        passengers.length === 0 ? alert('Angkot is empty!') : alert(showPassengers());
         break;
       case 4:
         alert('Your balance: ' + balance);
